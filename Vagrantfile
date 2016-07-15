@@ -20,12 +20,17 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     config.vm.box = "debian/contrib-jessie64"
     config.vm.box_url = "https://atlas.hashicorp.com/debian/boxes/contrib-jessie64"
 
-    # https://www.vagrantup.com/docs/provisioning/shell.html
-    config.vm.provision "shell", path: "provisioning/ubot.sh"
-
     # https://www.vagrantup.com/docs/networking/
     config.vm.network "private_network", ip: "10.8.10.8"
 
+    # https://www.vagrantup.com/docs/provisioning/shell.html
+    config.vm.provision "shell", path: "master/provision.sh"
+
+    # https://www.vagrantup.com/docs/provisioning/docker.html
+    config.vm.provision "docker" do |d|
+      d.build_image "/vagrant/worker", args: "-t worker"
+      d.run "worker"
+    end
   end
 
   # https://github.com/mitchellh/vagrant/issues/1673

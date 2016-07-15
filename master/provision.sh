@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC=/vagrant/provisioning
+SRC=/vagrant/master
 BB_HOME=/var/buildbot
 BB_ENV=$BB_HOME/venv
 BB_BIN=$BB_ENV/bin
