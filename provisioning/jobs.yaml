@@ -1,0 +1,5 @@
+- name: Poke Mongo
+  id: poke-mongo
+  repo-url: file://var/hg/repos/poke-mongo
+  vcs-type: hg
+  branch: default
